@@ -1,0 +1,46 @@
+.preloader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--black);
+  display: flex; align-items: center; justify-content: center;
+}
+.preloader-content { text-align: center; }
+.preloader-logo { margin-bottom: 30px; display: flex; justify-content: center; }
+.preloader-lens {
+  width: 80px; height: 80px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.lens-ring {
+  position: absolute; border-radius: 50%;
+  border: 2px solid var(--gold);
+  animation: lensRotate 2s linear infinite;
+}
+.lens-ring:first-child { width: 80px; height: 80px; }
+.ring-2 { width: 60px; height: 60px; border-color: var(--gold-light); animation-direction: reverse; animation-duration: 1.5s; }
+.ring-3 { width: 40px; height: 40px; border-color: var(--gold-dark); animation-duration: 1s; }
+.lens-dot {
+  width: 12px; height: 12px; background: var(--gold);
+  border-radius: 50;
+  box-shadow: 0 0 20px var(--accent-glow);
+  border-radius: 50%;
+}
+@keyframes lensRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.preloader-title {
+  font-family: var(--font-accent);
+  font-size: 1.2rem;
+  letter-spacing: 10px;
+  color: var(--gold);
+  font-weight: 600;
+}
+.preloader-bar-track {
+  width: 200px; height: 2px;
+  background: var(--gray-dark);
+  margin: 20px auto 0; border-radius: 2px; overflow: hidden;
+}
+.preloader-bar {
+  height: 100%; background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+  border-radius: 2px;
+}

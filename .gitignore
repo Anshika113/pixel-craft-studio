@@ -1,0 +1,26 @@
+# Dependencies
+frontend/node_modules/
+__pycache__/
+*.pyc
+
+# Build output
+frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+*.log
+
+# Vite cache
+frontend/node_modules/.vite/
+
+# Claude
+.claude/
+photo-film-studio-website-blueprint.md

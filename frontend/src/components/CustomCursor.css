@@ -1,0 +1,18 @@
+.cursor-dot, .cursor-ring {
+  position: fixed; pointer-events: none; z-index: 99999;
+  border-radius: 50%; transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity 0.3s, width 0.3s, height 0.3s, background 0.3s;
+}
+.cursor-dot {
+  width: 6px; height: 6px; background: var(--gold);
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(201, 168, 76, 0.5);
+  transition: opacity 0.3s, width 0.4s, height 0.4s, border-color 0.3s;
+}
+.cursor-dot.visible, .cursor-ring.visible { opacity: 1; }
+.cursor-dot.hover { width: 10px; height: 10px; background: var(--gold-light); }
+.cursor-ring.hover { width: 56px; height: 56px; border-color: var(--gold); }
+@media (max-width: 1024px) { .cursor-dot, .cursor-ring { display: none; } }
+@media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
