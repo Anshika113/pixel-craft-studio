@@ -6,7 +6,7 @@ A stunning, fully interactive website for a premium photo & film production stud
 
 ## Live Preview
 
-> Start both servers (see Setup below) and open `http://localhost:5174`
+> Start both servers (see Setup below) and open `https://pixel-craft-studio.pages.dev/'
 
 ---
 
