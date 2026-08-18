@@ -1,19 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { HiCamera, HiFilm, HiOfficeBuilding, HiSparkles } from 'react-icons/hi'
+import { SERVICES } from '../data'
 import './Services.css'
 
 const ICONS = { camera: HiCamera, film: HiFilm, briefcase: HiOfficeBuilding, sparkles: HiSparkles }
 
 export default function Services() {
-  const [services, setServices] = useState([])
   const [expanded, setExpanded] = useState(null)
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
-
-  useEffect(() => {
-    fetch('/api/services').then(r => r.json()).then(d => { if (Array.isArray(d)) setServices(d) }).catch(() => {})
-  }, [])
 
   return (
     <section id="services" className="services section-padding" ref={ref}>
@@ -29,7 +25,7 @@ export default function Services() {
       </motion.div>
 
       <div className="services-grid">
-        {services.map((service, i) => {
+        {SERVICES.map((service, i) => {
           const Icon = ICONS[service.icon] || HiCamera
           const isExpanded = expanded === service.id
           return (

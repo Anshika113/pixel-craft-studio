@@ -2,29 +2,22 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { HiChevronLeft, HiChevronRight, HiStar } from 'react-icons/hi'
+import { TESTIMONIALS } from '../data'
 import './Testimonials.css'
 
 export default function Testimonials() {
-  const [testimonials, setTestimonials] = useState([])
   const [current, setCurrent] = useState(0)
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 })
 
   useEffect(() => {
-    fetch('/api/testimonials').then(r => r.json()).then(d => { if (Array.isArray(d)) setTestimonials(d) }).catch(() => {})
+    const interval = setInterval(() => setCurrent(p => (p + 1) % TESTIMONIALS.length), 6000)
+    return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
-    if (testimonials.length === 0) return
-    const interval = setInterval(() => setCurrent(p => (p + 1) % testimonials.length), 6000)
-    return () => clearInterval(interval)
-  }, [testimonials.length])
+  const prev = () => setCurrent(p => (p - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
+  const next = () => setCurrent(p => (p + 1) % TESTIMONIALS.length)
 
-  const prev = () => setCurrent(p => (p - 1 + testimonials.length) % testimonials.length)
-  const next = () => setCurrent(p => (p + 1) % testimonials.length)
-
-  if (testimonials.length === 0) return null
-
-  const t = testimonials[current]
+  const t = TESTIMONIALS[current]
 
   return (
     <section id="testimonials" className="testimonials section-padding" ref={ref}>
@@ -80,7 +73,7 @@ export default function Testimonials() {
             <HiChevronLeft size={24} />
           </button>
           <div className="testimonial-dots">
-            {testimonials.map((_, i) => (
+            {TESTIMONIALS.map((_, i) => (
               <button
                 key={i}
                 className={`dot ${i === current ? 'active' : ''}`}

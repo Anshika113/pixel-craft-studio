@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { PORTFOLIO } from '../data'
 import './Portfolio.css'
 
 const CATEGORIES = [
@@ -15,16 +16,13 @@ const CATEGORIES = [
 
 export default function Portfolio() {
   const [active, setActive] = useState('all')
-  const [items, setItems] = useState([])
   const [hovered, setHovered] = useState(null)
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
-  useEffect(() => {
-    fetch(`/api/portfolio${active !== 'all' ? `?category=${active}` : ''}`)
-      .then(r => r.json())
-      .then(data => { if (Array.isArray(data)) setItems(data) })
-      .catch(() => {})
-  }, [active])
+  const items = useMemo(() =>
+    active === 'all' ? PORTFOLIO : PORTFOLIO.filter(p => p.category === active),
+    [active]
+  )
 
   return (
     <section id="portfolio" className="portfolio section-padding" ref={ref}>

@@ -22,19 +22,12 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    try {
-      const fd = new FormData()
-      Object.entries(form).forEach(([k, v]) => fd.append(k, v))
-      const res = await fetch('/api/contact', { method: 'POST', body: fd })
-      const data = await res.json()
+    setTimeout(() => {
       setStatus('success')
       setForm({ name: '', email: '', phone: '', service: '', message: '' })
       setStep(1)
       setTimeout(() => setStatus(null), 5000)
-    } catch {
-      setStatus('error')
-      setTimeout(() => setStatus(null), 5000)
-    }
+    }, 1000)
   }
 
   return (

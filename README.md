@@ -1,12 +1,14 @@
 # PixelCraft Studios - Premium Photo & Film Studio Website
 
-A stunning, fully interactive website for a premium photo & film production studio, built with **React.js** frontend and **FastAPI** Python backend. Designed for the Indian market with a dark luxury aesthetic, smooth animations, and responsive layout across all devices.
+A stunning, fully interactive website for a premium photo & film production studio, built with **React.js** and designed for the Indian market with a dark luxury aesthetic, smooth animations, and responsive layout across all devices.
+
+**Deployed on Cloudflare Pages** as a fully static site — no backend required.
 
 ---
 
 ## Live Preview
 
-> Start both servers (see Setup below) and open `http://localhost:5174`
+Deployed at Cloudflare Pages (see your Cloudflare dashboard for the URL).
 
 ---
 
@@ -15,11 +17,11 @@ A stunning, fully interactive website for a premium photo & film production stud
 | Layer | Technology |
 |-------|-----------|
 | **Frontend** | React 19 + Vite |
-| **Backend** | FastAPI (Python) |
 | **Animations** | Framer Motion |
 | **Icons** | React Icons (HeroIcons + FontAwesome) |
 | **Fonts** | Playfair Display, Outfit, Inter (Google Fonts) |
 | **Styling** | Custom CSS with CSS Variables |
+| **Deployment** | Cloudflare Pages |
 
 ---
 
@@ -35,29 +37,19 @@ A stunning, fully interactive website for a premium photo & film production stud
 - Circle-reveal mobile menu animation
 
 ### Sections
-- **Hero** - Full-bleed image slideshow, trust badges (Vogue India, Ogilvy, Tanishq, Sabyasachi, Netflix India), dual CTAs
+- **Hero** - Full-bleed image slideshow with parallax, trust badges (Vogue India, Ogilvy, Tanishq, Sabyasachi, Netflix India), dual CTAs
 - **About** - Split layout with overlapping images, "15+ Years" animated badge, feature cards with hover effects
 - **Stats** - Animated number counters (500+ weddings, 120+ brand films, 800+ happy clients, 25+ awards)
-- **Portfolio** - 12 projects fetched from API, 7-category live filter (All / Weddings / Films / Commercial / Fashion / Portraits / Corporate), hover overlays with zoom effect
-- **Services** - 4 service cards with INR pricing, expandable feature lists
+- **Portfolio** - 12 projects with 7-category live filter (All / Weddings / Films / Commercial / Fashion / Portraits / Corporate), hover overlays with zoom effect
+- **Services** - 4 service cards with INR pricing (Rs 40,000 - Rs 2,00,000), expandable feature lists
 - **Testimonials** - Auto-rotating carousel with star ratings, navigation dots, prev/next controls
-- **Contact** - Multi-step inquiry form (Step 1: Info, Step 2: Project Details), contact info cards, map placeholder
-- **Footer** - 4-column layout, social media links, animated heart
+- **Contact** - Multi-step inquiry form (Step 1: Your Info, Step 2: Project Details), contact info cards, map placeholder
+- **Footer** - 4-column layout, social media links (Instagram, YouTube, Vimeo, Pinterest, WhatsApp), animated heart
 
 ### Responsive Design
 - **Desktop** (1280px+) - Full navigation, 3-column portfolio grid, 2-column contact layout
 - **Tablet** (768px) - Hamburger menu, 2-column stats, stacked sections
 - **Mobile** (375px) - Single column, full-width cards, stacked buttons, touch-optimized
-
-### API Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/portfolio` | Get all portfolio items |
-| `GET` | `/api/portfolio?category=wedding` | Filter by category |
-| `GET` | `/api/services` | Get all services with pricing |
-| `GET` | `/api/testimonials` | Get client testimonials |
-| `GET` | `/api/stats` | Get studio statistics |
-| `POST` | `/api/contact` | Submit inquiry form |
 
 ---
 
@@ -80,50 +72,46 @@ pixel-craft-studio/
 │   │   │   ├── Preloader.jsx    # Loading animation
 │   │   │   ├── CustomCursor.jsx # Custom cursor effect
 │   │   │   └── *.css            # Component styles
+│   │   ├── data.js              # All portfolio, services & testimonial data
 │   │   ├── App.jsx
 │   │   ├── main.jsx
 │   │   └── index.css            # Global styles + variables
 │   ├── index.html
 │   ├── vite.config.js
 │   └── package.json
-├── backend/                     # FastAPI
-│   └── main.py                  # API routes + data
+├── backend/                     # FastAPI (optional, for local dev)
+│   └── main.py
 └── README.md
 ```
 
 ---
 
-## Setup & Installation
+## Cloudflare Pages Deployment
+
+### Build Settings (in Cloudflare Dashboard)
+| Setting | Value |
+|---------|-------|
+| **Build command** | `cd frontend && npm install && npm run build` |
+| **Build output directory** | `frontend/dist` |
+| **Root directory** | `/` |
+| **Node.js version** | `18` |
+
+---
+
+## Local Development
 
 ### Prerequisites
 - Node.js 18+
-- Python 3.9+
 - npm
 
-### 1. Clone the Repository
+### Setup
 ```bash
 git clone https://github.com/Anshika113/pixel-craft-studio.git
-cd pixel-craft-studio
-```
-
-### 2. Backend Setup
-```bash
-cd backend
-pip install fastapi uvicorn python-multipart
-python -m uvicorn main:app --host 0.0.0.0 --port 8001
-```
-Backend runs at `http://localhost:8001`
-
-### 3. Frontend Setup
-```bash
-cd frontend
+cd pixel-craft-studio/frontend
 npm install
 npm run dev
 ```
-Frontend runs at `http://localhost:5174`
-
-### 4. Open in Browser
-Visit `http://localhost:5174` to see the website.
+Open `http://localhost:5173` in your browser.
 
 ---
 
@@ -133,13 +121,13 @@ Visit `http://localhost:5174` to see the website.
 Edit the text in `Hero.jsx`, `Navbar.jsx`, and `Footer.jsx`
 
 ### Update Portfolio
-Edit the `PORTFOLIO` list in `backend/main.py` — add your own images and project details
+Edit the `PORTFOLIO` array in `frontend/src/data.js` — add your own images and project details
 
 ### Change Pricing
-Edit the `SERVICES` list in `backend/main.py` — update INR prices
+Edit the `SERVICES` array in `frontend/src/data.js` — update INR prices
 
 ### Update Testimonials
-Edit the `TESTIMONIALS` list in `backend/main.py`
+Edit the `TESTIMONIALS` array in `frontend/src/data.js`
 
 ### Change Colors
 Edit CSS variables in `frontend/src/index.css`:
@@ -151,17 +139,6 @@ Edit CSS variables in `frontend/src/index.css`:
   --black: #0a0a0a;       /* Background */
 }
 ```
-
----
-
-## Screenshots
-
-| Desktop | Mobile |
-|---------|--------|
-| Hero with slideshow & parallax | Responsive hero with stacked CTAs |
-| Portfolio grid with hover overlays | Single-column portfolio |
-| Service cards with INR pricing | Expandable service details |
-| Multi-step contact form | Touch-optimized form |
 
 ---
 
