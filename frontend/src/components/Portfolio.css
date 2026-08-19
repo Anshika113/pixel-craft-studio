@@ -1,6 +1,7 @@
 .portfolio {
   background: var(--black-light);
   position: relative;
+  overflow: hidden;
 }
 
 .portfolio-filters {

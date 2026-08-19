@@ -149,10 +149,13 @@
 .hero-side-text.right { right: 30px; bottom: 100px; text-orientation: mixed; }
 
 @media (max-width: 768px) {
-  .hero-section { min-height: 100svh; }
+  .hero-section { min-height: 100svh; min-height: 100vh; }
   .hero-clients-logos { gap: 16px; }
-  .client-logo-text { font-size: 0.7rem; }
+  .client-logo-text { font-size: 0.7rem; letter-spacing: 1px; }
   .hero-side-text { display: none; }
   .hero-buttons { flex-direction: column; align-items: center; }
   .hero-btn { width: 100%; max-width: 280px; text-align: center; }
+  .hero-label { font-size: 0.6rem; letter-spacing: 3px; }
+  .hero-label .hero-line { width: 20px; }
+  .hero-clients { margin-top: 40px; padding-top: 24px; }
 }

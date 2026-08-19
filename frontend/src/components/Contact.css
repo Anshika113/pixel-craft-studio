@@ -1,6 +1,7 @@
 .contact {
   background: var(--black);
   position: relative;
+  overflow: hidden;
 }
 
 .contact-grid {
