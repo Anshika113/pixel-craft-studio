@@ -8,7 +8,7 @@ A stunning, fully interactive website for a premium photo & film production stud
 
 ## Live Preview
 
-Deployed at Cloudflare Pages (see your Cloudflare dashboard for the URL).
+**[https://pixel-craft-studio.pages.dev](https://pixel-craft-studio.pages.dev)**
 
 ---
 
